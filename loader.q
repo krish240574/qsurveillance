@@ -96,7 +96,7 @@ sortandsetp:{[partition;sortcols]
  $[parted; out"`p# attribute set successfully"; out"ERROR - failed to set attribute"];
  }
 
-// build a daily table
+// build an hourly table
 hourlystatsfromtrade:{[path;hour]
  
  out"Building hourly stats for hour ",(string hour)," and path ",string path;
@@ -104,7 +104,6 @@ hourlystatsfromtrade:{[path;hour]
  q))ck: `midpoint,(cols k) where (string cols k) like "*bd*" 
  q))b:?[k;enlist(in;`sym;enlist `ADA);0b;ck!ck]
  / fix this q))?[b;();0b;`b0`b1!(*;`midpoint;(`bd0;`bd1))]
-
  
  // build the hourly stats 
  select high:max price,low:min price, open:first price, close:last price,volume:sum size by date:date,sym from  get path}
