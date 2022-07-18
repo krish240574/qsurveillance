@@ -41,8 +41,7 @@ loaddata:{[filename;rawdata]
  // in both cases we want to return a table with the same column names
  data:delete index from data:([]sym:(count data)#`$symbol),
  'data:$[filename in filesread; 
- [flip columnames!(colStr;enlist",")0:rawdata; filesread,::filename];
- 	  columnnames xcol (colStr;enlist",")0:rawdata];
+ [flip columnames!(colStr;enlist",")0:rawdata; filesread,::filename]; columnnames xcol (colStr;enlist",")0:rawdata];
 
  out"Read ",(string count data)," rows";
 
@@ -101,6 +100,11 @@ sortandsetp:{[partition;sortcols]
 hourlystatsfromtrade:{[path;hour]
  
  out"Building hourly stats for hour ",(string hour)," and path ",string path;
+
+ q))ck: `midpoint,(cols k) where (string cols k) like "*bd*" 
+ q))b:?[k;enlist(in;`sym;enlist `ADA);0b;ck!ck]
+ / fix this q))?[b;();0b;`b0`b1!(*;`midpoint;(`bd0;`bd1))]
+
  
  // build the hourly stats 
  select high:max price,low:min price, open:first price, close:last price,volume:sum size by date:date,sym from  get path}
@@ -159,7 +163,7 @@ loadallfiles:{[dir;builddaily]
  
  // Load each file in chunks
  {out"**** LOADING ",(string x)," ****";
-  .Q.fsn[loaddata[x];x;chunksize]} each filelist;
+ .Q.fsn[loaddata[x];x;chunksize]} each filelist;
  
  // finish the load
  finish[builddaily];
