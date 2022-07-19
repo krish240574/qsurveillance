@@ -1,4 +1,6 @@
 //-- CONFIG -------------
+shp:{[a]c:count a;$[98h=type a;[a:value a 0;c,shp a];[$[0<=type a;c,shp a 0;""]]]}
+
 
 // database to write to 
 dbdir:`:hdb
@@ -98,74 +100,78 @@ sortandsetp:{[partition;sortcols]
 
 // build an hourly table
 hourlystatsfromtrade:{[path;hour]
- 
+  
  out"Building hourly stats for hour ",(string hour)," and path ",string path;
 
- q))ck: `midpoint,(cols k) where (string cols k) like "*bd*" 
- q))b:?[k;enlist(in;`sym;enlist `ADA);0b;ck!ck]
- / fix this q))?[b;();0b;`b0`b1!(*;`midpoint;(`bd0;`bd1))]
- 
- // build the hourly stats 
- select high:max price,low:min price, open:first price, close:last price,volume:sum size by date:date,sym from  get path}
+ / build the hourly stats 
+ select spread:spread, buys:buys, sells:sells, vol:bmn0+amn0, obi:(bmn0-amn0)%(bmn0+amn0) by systemtime.hh from get path}
+ / need to build n% ask volume and n% bid volume here 
+ / https://blog.kaiko.com/api-tutorial-how-to-use-market-depth-to-study-cryptocurrency-order-book-dynamics-62ed823a0aaa 
+ /select high:max price,low:min price, open:first price, close:last price,volume:sum size by date:date,sym from  get path}
 
-builddailystats:{[removedups]
+buildhourlystats:{[removedups]
  
- out"**** Building daily stats table ****";
+ out"**** Building hourly stats table ****";
  
  // make sure we have an up-to-date sym file
  sym::get hsym `$(string dbdir),"/sym";
  
  // get the stats
+ partitions::get `:partitions;
  stats:0!raze hourlystatsfromtrade'[key partitions; value partitions];
  
- out"Created ",(string count stats)," daily stat rows";
+ out"Created ",(string count stats)," hourly stat rows";
  
- // create the path to the daily table
- dailypath:hsym`$(string dbdir),"/daily/";
+ // create the path to the hourly table
+ hourlypath:hsym`$(string dbdir),"/hourly/";
  
  // enumerate it
- out"Enumerating daily table";
+ out"Enumerating hourly table";
  .Q.en[dbdir; stats];
+
+ ruk;
  
  // remove duplicates
- if[removedups; 
-  dups:exec i from stats where ([]date;sym) in @[{select date,sym from get x};dailypath;([]date:();sym:())];
-  $[count dups;
-    [out"Removed ",(string count dups)," duplicates from stats table";
-     stats:select from stats where not i in dups];
-    out"No duplicates found"]];
+/ if[removedups; 
+/  dups:exec i from stats where ([]date;sym) in @[{select date,sym from get x};hourlypath;([]date:();sym:())];
+/  $[count dups;
+/    [out"Removed ",(string count dups)," duplicates from stats table";
+/     stats:select from stats where not i in dups];
+/    out"No duplicates found"]];
  
  // save the data
  if[count stats;
-  out"Saving to daily table";
-  if[.[{x upsert y;1b};(dailypath;stats);{out"ERROR - failed to save daily table: ",x;0b}];
+  out"Saving to hourly table";
+  if[.[{x upsert y;1b};(hourlypath;stats);{out"ERROR - failed to save hourly table: ",x;0b}];
    // make sure the table is sorted by date with an attribute on it
-   sortandsetp[dailypath;`date]]];
+   sortandsetp[hourlypath;`hh]]];
  }
 
-finish:{[builddaily]
+finish:{[buildhourly]
  // re-sort and set attributes on each partition
- sortandsetp[;`sym`systemtime] each key partitions;
+ /sortandsetp[;`sym`systemtime] each key partitions;
 
  // build daily stats, removing duplicates
- if[builddaily; builddailystats[1b]]; 
+ if[buildhourly; buildhourlystats[1b];]; 
  }
 
 // load all the files from a specified directory
-loadallfiles:{[dir;builddaily]
+loadallfiles:{[dir;buildhourly]
+ show "Inside loadallfiles:";
+ show dir;
   
  // get the contents of the directory
- filelist:key dir:hsym dir;
+ /filelist:key dir:hsym dir;
  
  // create the full path
- filelist:` sv' dir,'filelist;
+ /filelist:` sv' dir,'filelist;
  
  // Load each file in chunks
- {out"**** LOADING ",(string x)," ****";
- .Q.fsn[loaddata[x];x;chunksize]} each filelist;
+ /out"**** LOADING ",(string x)," ****";
+ /.Q.fsn[loaddata[x];x;chunksize]} each filelist;
  
  // finish the load
- finish[builddaily];
+ finish[buildhourly];
  }
 
 / loadallfiles[inputdir;1b]
