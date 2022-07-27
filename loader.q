@@ -1,4 +1,7 @@
 //-- CONFIG -------------
+
+/ TODO :
+/ Check removedups code - not working
 shp:{[a]c:count a;$[98h=type a;[a:value a 0;c,shp a];[$[0<=type a;c,shp a 0;""]]]}
 
 
@@ -129,8 +132,6 @@ buildhourlystats:{[removedups]
  out"Enumerating hourly table";
  .Q.en[dbdir; stats];
 
- ruk;
- 
  // remove duplicates
 / if[removedups; 
 /  dups:exec i from stats where ([]date;sym) in @[{select date,sym from get x};hourlypath;([]date:();sym:())];

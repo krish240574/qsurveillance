@@ -15,20 +15,14 @@ from kafka import KafkaProducer
 from kafka.errors import KafkaError
 
 
-def run_kafka_broker(streamChoice):
+def run_kafka_broker(topic):
     """sends a new datum every x seconds to kafka
     
     """
-    if "tweet" in streamChoice:
-        log_file = config.log_file 
-        topic = config.topic
-        key = config.key
-        csv_file = config.csv_file
-    else: 
-        log_file = config.log_file1
-        topic = config.topic1
-        key = config.key1
-        csv_file = config.csv_file1
+    log_file = config.log_file
+    topic = topic
+    key = config.key
+    csv_file = config.csv_file
 
     print("CSV file name = ",csv_file)
 
