@@ -441,3 +441,75 @@ INFO:root:line#
  line: {"timestamp": "1429762591", "price": "154.0", "size": "0.01"}
 INFO:kafka.producer.kafka:Closing the Kafka producer with 0 secs timeout.
 INFO:kafka.producer.kafka:Proceeding to force close the producer since pending requests could not be completed within timeout 0.
+INFO:root:logging to localhost:9092
+INFO:root:line# 
+ line: {"timestamp": "1429756390", "price": "163.54", "size": "0.01"}
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+INFO:kafka.conn:<BrokerConnection node_id=0 host=ubuntu:9092 <connecting> [IPv4 ('127.0.1.1', 9092)]>: connecting to ubuntu:9092 [('127.0.1.1', 9092) IPv4]
+INFO:kafka.conn:<BrokerConnection node_id=0 host=ubuntu:9092 <connecting> [IPv4 ('127.0.1.1', 9092)]>: Connection complete.
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+INFO:root:line# 
+ line: {"timestamp": "1429758670", "price": "163.54", "size": "0.01"}
+INFO:root:line# 
+ line: {"timestamp": "1429758670", "price": "163.0", "size": "0.02"}
+INFO:root:line# 
+ line: {"timestamp": "1429758670", "price": "162.0", "size": "0.02"}
+INFO:root:line# 
+ line: {"timestamp": "1429758670", "price": "161.0", "size": "0.02"}
+INFO:root:line# 
+ line: {"timestamp": "1429762591", "price": "154.0", "size": "0.01"}
+INFO:root:line# 
+ line: {"timestamp": "1429823507", "price": "153.46", "size": "0.01"}
+INFO:kafka.producer.kafka:Closing the Kafka producer with 0 secs timeout.
+INFO:kafka.producer.kafka:Proceeding to force close the producer since pending requests could not be completed within timeout 0.
+INFO:root:logging to localhost:9092
+INFO:root:line# 
+ line: {"timestamp": "1429756390", "price": "163.54", "size": "0.01"}
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+INFO:kafka.conn:<BrokerConnection node_id=0 host=ubuntu:9092 <connecting> [IPv4 ('127.0.1.1', 9092)]>: connecting to ubuntu:9092 [('127.0.1.1', 9092) IPv4]
+INFO:kafka.conn:<BrokerConnection node_id=0 host=ubuntu:9092 <connecting> [IPv4 ('127.0.1.1', 9092)]>: Connection complete.
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+INFO:root:line# 
+ line: {"timestamp": "1429758670", "price": "163.54", "size": "0.01"}
+INFO:root:line# 
+ line: {"timestamp": "1429758670", "price": "163.0", "size": "0.02"}
+INFO:root:line# 
+ line: {"timestamp": "1429758670", "price": "162.0", "size": "0.02"}
+INFO:root:line# 
+ line: {"timestamp": "1429758670", "price": "161.0", "size": "0.02"}
+INFO:kafka.producer.kafka:Closing the Kafka producer with 0 secs timeout.
+INFO:kafka.producer.kafka:Proceeding to force close the producer since pending requests could not be completed within timeout 0.
+INFO:root:logging to localhost:9092
+INFO:root:line# 
+ line: {"timestamp": "1429756390", "price": "163.54", "size": "0.01"}
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: connecting to localhost:9092 [('127.0.0.1', 9092) IPv4]
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv4 ('127.0.0.1', 9092)]>: Connection complete.
+INFO:kafka.conn:<BrokerConnection node_id=0 host=ubuntu:9092 <connecting> [IPv4 ('127.0.1.1', 9092)]>: connecting to ubuntu:9092 [('127.0.1.1', 9092) IPv4]
+INFO:kafka.conn:<BrokerConnection node_id=0 host=ubuntu:9092 <connecting> [IPv4 ('127.0.1.1', 9092)]>: Connection complete.
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv4 ('127.0.0.1', 9092)]>: Closing connection. 
+INFO:root:line# 
+ line: {"timestamp": "1429758670", "price": "163.54", "size": "0.01"}
+INFO:root:line# 
+ line: {"timestamp": "1429758670", "price": "163.0", "size": "0.02"}
+INFO:root:line# 
+ line: {"timestamp": "1429758670", "price": "162.0", "size": "0.02"}
+INFO:root:line# 
+ line: {"timestamp": "1429758670", "price": "161.0", "size": "0.02"}
+INFO:root:line# 
+ line: {"timestamp": "1429762591", "price": "154.0", "size": "0.01"}
+INFO:root:line# 
+ line: {"timestamp": "1429823507", "price": "153.46", "size": "0.01"}
+INFO:root:line# 
+ line: {"timestamp": "1429825645", "price": "185.0", "size": "0.01"}
+INFO:root:line# 
+ line: {"timestamp": "1429901341", "price": "185.0", "size": "0.01"}
+INFO:root:line# 
+ line: {"timestamp": "1430068608", "price": "153.46", "size": "0.01"}
+INFO:root:line# 
+ line: {"timestamp": "1430093343", "price": "153.46", "size": "0.63001057"}
+INFO:root:line# 
+ line: {"timestamp": "1430093343", "price": "152.0", "size": "0.1618"}
+INFO:kafka.producer.kafka:Closing the Kafka producer with 0 secs timeout.
+INFO:kafka.producer.kafka:Proceeding to force close the producer since pending requests could not be completed within timeout 0.

@@ -2,7 +2,7 @@
 
 / TODO :
 / Check removedups code - not working
-shp:{[a]c:count a;$[98h=type a;[a:value a 0;c,shp a];[$[0<=type a;c,shp a 0;""]]]}
+shp:{[a]c:count a;$[0<=type a;c,shp a 0;""]}
 
 
 // database to write to 
@@ -162,14 +162,14 @@ loadallfiles:{[dir;buildhourly]
  show dir;
   
  // get the contents of the directory
- /filelist:key dir:hsym dir;
+ filelist:key dir:hsym dir;
  
  // create the full path
- /filelist:` sv' dir,'filelist;
+ filelist:` sv' dir,'filelist;
  
  // Load each file in chunks
- /out"**** LOADING ",(string x)," ****";
- /.Q.fsn[loaddata[x];x;chunksize]} each filelist;
+ out"**** LOADING ",(string x)," ****";
+ .Q.fsn[loaddata[x];x;chunksize]} each filelist;
  
  // finish the load
  finish[buildhourly];
